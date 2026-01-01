@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
-import { Check, X, ArrowRight, Sparkles, Zap, Users, Package, MessageSquare, Phone, Star, Clock, Shield, Palette } from "lucide-react";
+import { Check, X, ArrowRight, Sparkles, Zap, Users, Package, MessageSquare, Phone, Star, Clock, Shield, Palette, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
+// Screenshots oude website
+import oldWebsite1 from "@/assets/old-website-1.png";
+import oldWebsite2 from "@/assets/old-website-2.png";
+import oldWebsite3 from "@/assets/old-website-3.png";
+import oldWebsite4 from "@/assets/old-website-4.png";
 interface ComparisonItem {
   feature: string;
   oldWebsite: string | boolean;
@@ -195,6 +201,94 @@ const renderValue = (value: string | boolean) => {
   return <span className="text-sm">{value}</span>;
 };
 
+const oldScreenshots = [
+  { src: oldWebsite1, label: "Hero & Navigatie" },
+  { src: oldWebsite2, label: "Diensten" },
+  { src: oldWebsite3, label: "Pakketten" },
+  { src: oldWebsite4, label: "Contact & Footer" },
+];
+
+const ScreenshotComparison = () => {
+  const [selectedOld, setSelectedOld] = useState(0);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.15 }}
+      className="mb-12"
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <div className="p-2 bg-primary/10 rounded-lg text-primary">
+          <Monitor className="w-5 h-5" />
+        </div>
+        <h2 className="text-2xl font-bold">Visuele Vergelijking</h2>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Oude Website */}
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <div className="p-4 bg-red-500/10 border-b border-border flex items-center gap-2">
+            <X className="w-4 h-4 text-red-500" />
+            <span className="font-medium text-red-500">Oude Website</span>
+          </div>
+          <div className="p-4">
+            <div className="aspect-[9/16] md:aspect-video bg-muted rounded-lg overflow-hidden mb-4">
+              <img 
+                src={oldScreenshots[selectedOld].src} 
+                alt={`Oude website - ${oldScreenshots[selectedOld].label}`}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {oldScreenshots.map((screenshot, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedOld(index)}
+                  className={`flex-shrink-0 px-3 py-1.5 text-xs rounded-full transition-colors ${
+                    selectedOld === index 
+                      ? "bg-primary text-primary-foreground" 
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  }`}
+                >
+                  {screenshot.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Nieuwe Website */}
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <div className="p-4 bg-green-500/10 border-b border-border flex items-center gap-2">
+            <Check className="w-4 h-4 text-green-500" />
+            <span className="font-medium text-green-500">Nieuwe Website</span>
+          </div>
+          <div className="p-4">
+            <div className="aspect-[9/16] md:aspect-video bg-muted rounded-lg overflow-hidden mb-4 flex items-center justify-center">
+              <Link to="/" className="w-full h-full">
+                <iframe 
+                  src="/" 
+                  className="w-full h-full pointer-events-none"
+                  title="Nieuwe website preview"
+                />
+              </Link>
+            </div>
+            <div className="text-center">
+              <Link to="/">
+                <Button variant="outline" size="sm">
+                  Open in volledig scherm
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const Comparison = () => {
   const totalNew = comparisonData.filter(item => 
     item.oldWebsite === false && item.newWebsite !== false
@@ -238,6 +332,9 @@ const Comparison = () => {
             Overzicht van alle verbeteringen en nieuwe features in de vernieuwde website
           </p>
         </motion.div>
+
+        {/* Visual Screenshots Section */}
+        <ScreenshotComparison />
 
         {/* Stats */}
         <motion.div
