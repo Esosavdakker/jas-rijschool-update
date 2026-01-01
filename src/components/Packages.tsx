@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Check, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp, Sparkles, Clock, Flame } from 'lucide-react';
 
 const packages = [
   {
@@ -81,6 +81,24 @@ const Packages = () => {
           <p className="text-muted-foreground mt-8 max-w-2xl mx-auto">
             Kies het pakket dat bij jou past en start direct met je rijopleiding
           </p>
+          
+          {/* Urgency Banner */}
+          <motion.div
+            className="mt-8 inline-flex items-center gap-3 bg-gradient-to-r from-destructive/10 via-destructive/5 to-destructive/10 border-2 border-destructive/30 rounded-full px-6 py-3"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="flex items-center gap-2 text-destructive">
+              <Flame className="w-5 h-5 animate-pulse" />
+              <span className="font-bold">Nog 3 plekken beschikbaar deze maand!</span>
+            </div>
+            <div className="hidden sm:flex items-center gap-1 text-muted-foreground text-sm">
+              <Clock className="w-4 h-4" />
+              <span>Beperkte beschikbaarheid</span>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Packages Grid */}
