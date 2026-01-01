@@ -10,7 +10,6 @@ const packages = [
     price: '€1100,-',
     features: ['20 rijlessen*', 'Snel beginnen', 'Vaste instructeur', 'Nieuwe lesauto', 'Vanaf 16,5 jaar'],
     popular: false,
-    height: 'min-h-[380px]',
   },
   {
     id: 'b',
@@ -18,7 +17,6 @@ const packages = [
     price: '€1900,-',
     features: ['30 rijlessen*', 'Snel beginnen', 'Vaste instructeur', 'Nieuwe lesauto', 'Vanaf 16,5 jaar', 'Praktijkexamen CBR'],
     popular: false,
-    height: 'min-h-[420px]',
   },
   {
     id: 'c',
@@ -26,7 +24,6 @@ const packages = [
     price: '€2025,-',
     features: ['25 rijlessen*', 'Snel beginnen', 'Vaste instructeur', 'Nieuwe lesauto', 'Vanaf 16,5 jaar', 'Praktijkexamen CBR', '1x herexamen'],
     popular: false,
-    height: 'min-h-[460px]',
   },
   {
     id: 'd',
@@ -34,7 +31,6 @@ const packages = [
     price: '€2625,-',
     features: ['40 rijlessen*', 'Snel beginnen', 'Vaste instructeur', 'Nieuwe lesauto', 'Vanaf 16,5 jaar', 'Praktijkexamen CBR', '1x herexamen'],
     popular: true,
-    height: 'min-h-[500px]',
   },
 ];
 
@@ -88,11 +84,11 @@ const Packages = () => {
         </motion.div>
 
         {/* Packages Grid */}
-        <div className="flex flex-wrap justify-center items-end gap-6 max-w-6xl mx-auto mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
           {packages.map((pkg, index) => (
             <motion.div
               key={pkg.id}
-              className={`relative w-full sm:w-[280px] ${pkg.height}`}
+              className="relative w-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -100,10 +96,10 @@ const Packages = () => {
             >
               {/* Popular Badge */}
               {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <div className="bg-gradient-to-r from-success to-emerald-400 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg flex items-center gap-1">
-                    <Sparkles className="w-4 h-4" />
-                    MEEST GEKOZEN!
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                  <div className="bg-gradient-to-r from-success to-emerald-400 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow-md flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" />
+                    Populair
                   </div>
                 </div>
               )}
