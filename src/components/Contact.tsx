@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Phone, MessageCircle, Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 const contactMethods = [
   {
@@ -35,6 +36,7 @@ const Contact = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    phone: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,15 +58,35 @@ const Contact = () => {
 
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast.success('Bericht verzonden! We nemen snel contact op.', {
-      icon: <CheckCircle className="w-5 h-5" />,
-    });
-    
-    setFormState({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+    try {
+      // Determine package name from message
+      const packageMatch = formState.message.match(/Pakket [A-D]|Pakket \d|rijles|examen|TTT|Faalangst/i);
+      const packageName = packageMatch ? packageMatch[0] : 'Algemeen contact';
+
+      // Save to database
+      const { error } = await supabase
+        .from('package_signups')
+        .insert({
+          name: formState.name.trim(),
+          email: formState.email.trim(),
+          phone: formState.phone.trim() || null,
+          package_name: packageName,
+          message: formState.message.trim(),
+        });
+
+      if (error) throw error;
+      
+      toast.success('Bericht verzonden! We nemen snel contact op.', {
+        icon: <CheckCircle className="w-5 h-5" />,
+      });
+      
+      setFormState({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      console.error('Error saving signup:', error);
+      toast.error('Er ging iets mis. Probeer het opnieuw.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -147,6 +169,16 @@ const Contact = () => {
                   className="w-full px-5 py-4 rounded-xl border-2 border-accent/30 bg-card text-primary font-medium placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:shadow-glow-orange transition-all duration-300"
                 />
               </div>
+            </div>
+
+            <div>
+              <input
+                type="tel"
+                placeholder="Telefoonnummer (optioneel)"
+                value={formState.phone}
+                onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                className="w-full px-5 py-4 rounded-xl border-2 border-accent/30 bg-card text-primary font-medium placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:shadow-glow-orange transition-all duration-300"
+              />
             </div>
 
             <div>
