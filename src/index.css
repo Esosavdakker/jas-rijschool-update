@@ -5,6 +5,10 @@
 /* JAS-Rijschool Design System - Enhanced Premium Version */
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   :root {
     /* Core Brand Colors */
     --background: 0 0% 100%;
