@@ -14,11 +14,11 @@ interface ComparisonItem {
 const comparisonData: ComparisonItem[] = [
   // Design & UX
   {
-    feature: "Modern design",
-    oldWebsite: false,
-    newWebsite: true,
+    feature: "Kleurenschema",
+    oldWebsite: "Blauw/Oranje (licht thema)",
+    newWebsite: "Donker thema met goud accenten",
     category: "Design & UX",
-    improvement: "Volledig nieuw ontwerp met moderne glassmorphism effecten"
+    improvement: "Professionelere, modernere uitstraling"
   },
   {
     feature: "Animaties",
@@ -28,85 +28,99 @@ const comparisonData: ComparisonItem[] = [
     improvement: "Framer Motion animaties voor vloeiende overgangen"
   },
   {
-    feature: "Responsive design",
-    oldWebsite: "Basis",
-    newWebsite: "Volledig geoptimaliseerd",
+    feature: "Glassmorphism effecten",
+    oldWebsite: false,
+    newWebsite: true,
     category: "Design & UX",
-    improvement: "Perfect weergave op alle apparaten"
+    improvement: "Moderne glaseffecten op kaarten en navigatie"
   },
   {
-    feature: "Dark/Light mode",
-    oldWebsite: false,
-    newWebsite: "Donker thema",
+    feature: "Hero sectie",
+    oldWebsite: "Afbeelding carousel",
+    newWebsite: "Statische hero met gradient achtergrond",
     category: "Design & UX",
-    improvement: "Professioneel donker thema"
+    improvement: "Snellere laadtijd, duidelijkere boodschap"
+  },
+  {
+    feature: "Navigatie design",
+    oldWebsite: "Standaard menu",
+    newWebsite: "Glassmorphism sticky header",
+    category: "Design & UX",
+    improvement: "Moderne look met blur effect"
   },
   
   // Functionaliteit
   {
-    feature: "WhatsApp integratie",
+    feature: "WhatsApp floating button",
     oldWebsite: false,
     newWebsite: true,
     category: "Functionaliteit",
-    improvement: "Zwevende WhatsApp knop voor directe contact"
+    improvement: "Altijd zichtbare WhatsApp knop voor snel contact"
   },
   {
     feature: "Contact formulier",
-    oldWebsite: "Basis",
-    newWebsite: "Uitgebreid met validatie",
+    oldWebsite: "Basis (Naam, Email, Bericht)",
+    newWebsite: "Uitgebreid met telefoon & pakketkeuze",
     category: "Functionaliteit",
-    improvement: "Form validatie en database opslag"
+    improvement: "Meer info bij aanmelding + database opslag"
   },
   {
     feature: "Pakket aanmelding",
     oldWebsite: false,
     newWebsite: true,
     category: "Functionaliteit",
-    improvement: "Direct aanmelden via website"
+    improvement: "Direct aanmelden voor specifiek pakket via website"
   },
   {
     feature: "Database integratie",
     oldWebsite: false,
     newWebsite: true,
     category: "Functionaliteit",
-    improvement: "Supabase backend voor data opslag"
+    improvement: "Alle aanmeldingen opgeslagen in Lovable Cloud"
   },
   {
-    feature: "FAQ sectie",
+    feature: "Mobile CTA balk",
     oldWebsite: false,
     newWebsite: true,
     category: "Functionaliteit",
-    improvement: "Interactieve accordion FAQ"
+    improvement: "Vaste bel/WhatsApp knoppen op mobiel"
+  },
+  {
+    feature: "Back to top knop",
+    oldWebsite: false,
+    newWebsite: true,
+    category: "Functionaliteit",
+    improvement: "Makkelijk terug naar boven scrollen"
   },
   
   // Content
   {
+    feature: "Reviews weergave",
+    oldWebsite: "Alleen tekst reviews",
+    newWebsite: "Foto's van geslaagde leerlingen",
+    category: "Content",
+    improvement: "Visueel bewijs met échte foto's"
+  },
+  {
     feature: "Instructeur profiel",
-    oldWebsite: "Basis info",
+    oldWebsite: "Geen aparte sectie",
     newWebsite: "Uitgebreide bio met foto",
     category: "Content",
-    improvement: "Professionele presentatie van Alex"
+    improvement: "Persoonlijke connectie met Alex"
   },
   {
-    feature: "Testimonials",
-    oldWebsite: false,
-    newWebsite: true,
+    feature: "Diensten kaarten",
+    oldWebsite: "3 diensten met oranje iconen",
+    newWebsite: "6 diensten met gradient kaarten",
     category: "Content",
-    improvement: "Foto's van geslaagde leerlingen"
+    improvement: "Meer diensten, modernere presentatie"
   },
   {
-    feature: "Diensten overzicht",
-    oldWebsite: "Lijst",
-    newWebsite: "Visuele kaarten met iconen",
+    feature: "Pakketten",
+    oldWebsite: "4 pakketten (A-D) met lijsten",
+    newWebsite: "4 pakketten met toggle voor extra opties",
     category: "Content",
-    improvement: "Duidelijke service presentatie"
-  },
-  {
-    feature: "Pakketten & prijzen",
-    oldWebsite: "Statische tekst",
-    newWebsite: "Interactieve prijskaarten",
-    category: "Content",
-    improvement: "Populaire badge, extra opties toggle"
+    improvement: "Interactieve presentatie, extra opties zichtbaar"
   },
   {
     feature: "How it works sectie",
@@ -115,35 +129,49 @@ const comparisonData: ComparisonItem[] = [
     category: "Content",
     improvement: "Stapsgewijze uitleg voor nieuwe leerlingen"
   },
+  {
+    feature: "Google Maps",
+    oldWebsite: true,
+    newWebsite: false,
+    category: "Content",
+    improvement: "Kan toegevoegd worden indien gewenst"
+  },
+  {
+    feature: "CBR info links",
+    oldWebsite: "Footer sectie met links",
+    newWebsite: false,
+    category: "Content",
+    improvement: "Kan toegevoegd worden aan FAQ of footer"
+  },
   
   // Technisch
   {
-    feature: "Laadsnelheid",
-    oldWebsite: "Gemiddeld",
-    newWebsite: "Snel (Vite + React)",
+    feature: "Tech stack",
+    oldWebsite: "Onbekend (statisch?)",
+    newWebsite: "React + Vite + TypeScript",
     category: "Technisch",
-    improvement: "Moderne tech stack"
+    improvement: "Moderne, schaalbare architectuur"
   },
   {
-    feature: "SEO geoptimaliseerd",
+    feature: "Laadsnelheid",
+    oldWebsite: "Met image carousel",
+    newWebsite: "Geoptimaliseerd (geen carousel)",
+    category: "Technisch",
+    improvement: "Snellere eerste weergave"
+  },
+  {
+    feature: "SEO",
     oldWebsite: "Basis",
-    newWebsite: "Volledig",
+    newWebsite: "Volledig geoptimaliseerd",
     category: "Technisch",
     improvement: "Meta tags, structured data ready"
   },
   {
-    feature: "Mobile CTA",
-    oldWebsite: false,
-    newWebsite: true,
+    feature: "Social media links",
+    oldWebsite: "Facebook, Instagram, TikTok",
+    newWebsite: "In footer aanwezig",
     category: "Technisch",
-    improvement: "Vaste call-to-action balk op mobiel"
-  },
-  {
-    feature: "Back to top knop",
-    oldWebsite: false,
-    newWebsite: true,
-    category: "Technisch",
-    improvement: "Makkelijk navigeren op lange pagina's"
+    improvement: "Behouden uit oude site"
   },
 ];
 
