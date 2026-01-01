@@ -10,6 +10,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import MobileCTA from '@/components/MobileCTA';
+import BackToTop from '@/components/BackToTop';
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <Footer />
       <FloatingWhatsApp />
       <MobileCTA />
+      <BackToTop />
     </div>
   );
 };
