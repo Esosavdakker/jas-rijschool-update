@@ -2,12 +2,16 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
+import studentPassed1 from '@/assets/student-passed-1.jpg';
+import studentPassed2 from '@/assets/student-passed-2.jpg';
+import studentPassed3 from '@/assets/student-passed-3.jpg';
+import studentPassed4 from '@/assets/student-passed-4.jpg';
 
 const heroImages = [
-  'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80',
-  'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
-  'https://images.unsplash.com/photo-1493238792000-8113da705763?w=800&q=80',
-  'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80',
+  studentPassed1,
+  studentPassed2,
+  studentPassed3,
+  studentPassed4,
 ];
 
 const Hero = () => {
