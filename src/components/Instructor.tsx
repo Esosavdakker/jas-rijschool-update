@@ -24,7 +24,8 @@ const Instructor = () => {
             <div className="absolute -inset-4 bg-gradient-to-r from-accent via-secondary to-primary rounded-3xl blur opacity-20" />
             <img
               src={instructorAlex}
-              alt="Instructeur Alex"
+              alt="Instructeur Alex - Rij-instructeur bij JAS-Rijschool met meer dan 10 jaar ervaring"
+              loading="lazy"
               className="relative rounded-2xl shadow-2xl w-full aspect-square object-cover"
             />
           </motion.div>
