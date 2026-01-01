@@ -6,12 +6,16 @@ import studentPassed1 from '@/assets/student-passed-1.jpg';
 import studentPassed2 from '@/assets/student-passed-2.jpg';
 import studentPassed3 from '@/assets/student-passed-3.jpg';
 import studentPassed4 from '@/assets/student-passed-4.jpg';
+import studentPassed5 from '@/assets/student-passed-5.jpg';
+import studentPassed6 from '@/assets/student-passed-6.jpg';
 
 const heroImages = [
   studentPassed1,
   studentPassed2,
   studentPassed3,
   studentPassed4,
+  studentPassed5,
+  studentPassed6,
 ];
 
 const Hero = () => {
