@@ -20,14 +20,14 @@ export const packages = [
     name: 'Pakket C',
     price: '€2025,-',
     features: ['25 rijlessen*', 'Snel beginnen', 'Vaste instructeur', 'Nieuwe lesauto', 'Vanaf 16,5 jaar', 'Praktijkexamen CBR', '1x herexamen'],
-    popular: false,
+    popular: true,
   },
   {
     id: 'd',
     name: 'Pakket D',
     price: '€2625,-',
     features: ['40 rijlessen*', 'Snel beginnen', 'Vaste instructeur', 'Nieuwe lesauto', 'Vanaf 16,5 jaar', 'Praktijkexamen CBR', '1x herexamen'],
-    popular: true,
+    popular: false,
   },
 ];
 
