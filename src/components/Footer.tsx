@@ -7,28 +7,28 @@ const Footer = () => (
     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-muted/30 pointer-events-none" />
 
     <div className="container mx-auto px-4 md:px-6 relative">
-      <div className="py-16">
-        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+      <div className="py-10 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
           {/* Contact Info */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h3 className="font-heading font-bold text-xl text-accent uppercase tracking-wide mb-6">Contactinformatie</h3>
-            <div className="space-y-4">
-              <p className="font-heading font-bold text-lg text-accent">{siteConfig.name}</p>
-              <p className="flex items-start gap-3 text-primary">
-                <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                {siteConfig.address.full}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center md:text-left">
+            <h3 className="font-heading font-bold text-lg md:text-xl text-accent uppercase tracking-wide mb-4 md:mb-6">Contactinformatie</h3>
+            <div className="space-y-3">
+              <p className="font-heading font-bold text-base md:text-lg text-accent">{siteConfig.name}</p>
+              <p className="flex items-start justify-center md:justify-start gap-2 text-primary text-sm md:text-base">
+                <MapPin className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5" />
+                <span className="break-words">{siteConfig.address.full}</span>
               </p>
-              <p className="flex items-center gap-3 text-primary">
-                <Phone className="w-5 h-5 text-accent" />
+              <p className="flex items-center justify-center md:justify-start gap-2 text-primary text-sm md:text-base">
+                <Phone className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 {siteConfig.phone}
               </p>
-              <p className="flex items-center gap-3 text-primary">
-                <Mail className="w-5 h-5 text-accent" />
-                {siteConfig.email}
+              <p className="flex items-center justify-center md:justify-start gap-2 text-primary text-sm md:text-base break-all">
+                <Mail className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
+                <span className="break-all">{siteConfig.email}</span>
               </p>
 
               {/* Social */}
-              <div className="flex flex-wrap gap-2 pt-4">
+              <div className="flex flex-wrap justify-center md:justify-start gap-2 pt-3">
                 <a
                   href={siteConfig.social.facebook}
                   target="_blank"
@@ -59,21 +59,21 @@ const Footer = () => (
           </motion.div>
 
           {/* Quick Links */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            <h3 className="font-heading font-bold text-xl text-accent uppercase tracking-wide mb-6">Dit kun je zelf regelen!</h3>
-            <ul className="space-y-4">
-              <li className="text-primary flex items-center gap-2">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-center md:text-left">
+            <h3 className="font-heading font-bold text-lg md:text-xl text-accent uppercase tracking-wide mb-4 md:mb-6">Dit kun je zelf regelen!</h3>
+            <ul className="space-y-3">
+              <li className="text-primary flex items-center justify-center md:justify-start gap-2 text-sm md:text-base">
                 <span className="text-accent font-bold">▸</span>
                 Machtig ons voor je Praktijkexamen
               </li>
               <li>
-                <a href="https://digid.nl/inloggen" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-primary transition-colors flex items-center gap-2">
+                <a href="https://digid.nl/inloggen" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-primary transition-colors flex items-center justify-center md:justify-start gap-2 text-sm md:text-base">
                   <span className="text-accent font-bold">▸</span>
                   DigiD nodig voor aanmelding CBR
                 </a>
               </li>
               <li>
-                <a href="https://www.cbr.nl/nl" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-primary transition-colors flex items-center gap-2">
+                <a href="https://www.cbr.nl/nl" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-primary transition-colors flex items-center justify-center md:justify-start gap-2 text-sm md:text-base">
                   <span className="text-accent font-bold">▸</span>
                   Theorie-examen zelf inplannen bij CBR
                 </a>
@@ -94,13 +94,13 @@ const Footer = () => (
       </div>
 
       {/* Bottom */}
-      <div className="border-t-2 border-accent/20 py-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} {siteConfig.name}. Alle rechten voorbehouden.</p>
-          <div className="flex gap-6 text-sm">
+      <div className="border-t-2 border-accent/20 py-4 md:py-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+          <p className="text-muted-foreground text-xs md:text-sm text-center">© {new Date().getFullYear()} {siteConfig.name}. Alle rechten voorbehouden.</p>
+          <div className="flex gap-4 md:gap-6 text-xs md:text-sm">
             <a href="#privacy" className="text-accent hover:text-primary transition-colors">Privacy</a>
             <span className="text-muted-foreground">|</span>
-            <a href="#algemene-voorwaarden" className="text-accent hover:text-primary transition-colors">Algemene voorwaarden</a>
+            <a href="#algemene-voorwaarden" className="text-accent hover:text-primary transition-colors">Voorwaarden</a>
           </div>
         </div>
       </div>
