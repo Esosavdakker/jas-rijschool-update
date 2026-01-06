@@ -81,16 +81,16 @@ const Contact = () => {
   const inputClass = "w-full px-5 py-4 rounded-xl border-2 border-accent/30 bg-card text-primary font-medium placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:shadow-glow-orange transition-all duration-300";
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-muted/30">
+    <section id="contact" className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <motion.div className="text-center mb-10" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4 section-underline">Contact</h2>
           <p className="text-muted-foreground mt-8 max-w-2xl mx-auto">Neem eenvoudig contact met ons op</p>
         </motion.div>
 
         {/* Contact Cards */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-20">
+        <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto mb-14">
           {contactMethods.map((method, index) => (
             <motion.a
               key={method.title}
