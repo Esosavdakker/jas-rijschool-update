@@ -4,7 +4,6 @@ import Services from '@/components/Services';
 import HowItWorks from '@/components/HowItWorks';
 import Packages from '@/components/Packages';
 import Testimonials from '@/components/Testimonials';
-import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
@@ -21,7 +20,6 @@ const Index = () => {
         <HowItWorks />
         <Testimonials />
         <Packages />
-        <FAQ />
         <Contact />
       </main>
       <Footer />
