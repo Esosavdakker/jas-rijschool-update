@@ -5,6 +5,8 @@ import { Phone, MessageCircle, Mail, MapPin, Send, CheckCircle, AlertCircle } fr
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { siteConfig } from '@/config/site';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { faqs } from '@/config/content';
 
 const contactMethods = [
   {
@@ -109,6 +111,27 @@ const Contact = () => {
             </motion.a>
           ))}
         </div>
+
+        {/* FAQ */}
+        <motion.div id="faq" className="max-w-3xl mx-auto mb-20" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary text-center mb-8">Veelgestelde Vragen</h3>
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="bg-card border-2 border-border/50 rounded-xl px-6 shadow-sm hover:shadow-md transition-shadow data-[state=open]:border-accent/30 data-[state=open]:shadow-md"
+              >
+                <AccordionTrigger className="text-left font-heading font-semibold text-primary hover:text-accent hover:no-underline py-5">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
 
         {/* Form */}
         <motion.div id="contact-form" className="max-w-2xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
