@@ -21,7 +21,7 @@ export const siteConfig = {
   social: {
     facebook: 'https://www.facebook.com/share/17ovAkVjpv/?mibextid=wwXIfr',
     instagram: 'https://www.instagram.com/jas_rijschool',
-    tiktok: 'https://www.tiktok.com/@jas_rijschool',
+    tiktok: 'https://www.tiktok.com/@jas.rijschool?_r=1&_t=ZG-92MX33iCsrp',
   },
   
   // Statistieken
