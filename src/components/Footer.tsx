@@ -82,13 +82,13 @@ const Footer = () => (
           </motion.div>
 
           {/* Logo */}
-          <motion.div className="flex flex-col items-center justify-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <div className="font-heading text-3xl md:text-5xl font-extrabold flex gap-1">
+          <motion.div className="flex flex-col items-center md:items-end justify-center md:justify-start" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+            <div className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold flex gap-1 items-baseline">
               <span className="text-primary">JAS</span>
               <span className="text-accent">-</span>
               <span className="text-secondary">Rijschool</span>
             </div>
-            <p className="text-muted-foreground mt-4 text-center text-sm md:text-base">{siteConfig.tagline}</p>
+            <p className="text-muted-foreground mt-3 text-center md:text-right text-sm md:text-base max-w-[200px]">{siteConfig.tagline}</p>
           </motion.div>
         </div>
       </div>
