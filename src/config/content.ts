@@ -133,9 +133,3 @@ export const faqs = [
   },
 ];
 
-export const instructorHighlights = [
-  { icon: 'Award', label: '10+ jaar ervaring' },
-  { icon: 'Users', label: '500+ geslaagden' },
-  { icon: 'Clock', label: 'Flexibele lestijden' },
-  { icon: 'Heart', label: 'Geduldig & vriendelijk' },
-];
