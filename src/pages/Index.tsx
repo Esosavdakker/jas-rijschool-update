@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import MobileCTA from '@/components/MobileCTA';
 import BackToTop from '@/components/BackToTop';
+import CookieConsent from '@/components/CookieConsent';
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <FloatingWhatsApp />
       <MobileCTA />
       <BackToTop />
+      <CookieConsent />
     </div>
   );
 };
