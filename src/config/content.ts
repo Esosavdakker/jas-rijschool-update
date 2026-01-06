@@ -1,5 +1,15 @@
-// Content - Wijzig hier alle teksten
+/**
+ * ╔═══════════════════════════════════════════════════════════════════╗
+ * ║                    WEBSITE CONTENT                                ║
+ * ║  Wijzig hier alle teksten, reviews en FAQ                         ║
+ * ╚═══════════════════════════════════════════════════════════════════╝
+ */
 
+// ─────────────────────────────────────────────────────────────────────
+// NAVIGATIE
+// De menu-items bovenaan de pagina
+// href moet overeenkomen met de section id (bijv. #contact)
+// ─────────────────────────────────────────────────────────────────────
 export const navItems = [
   { label: 'Home', href: '#home' },
   { label: 'Diensten', href: '#services' },
@@ -8,6 +18,11 @@ export const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
+// ─────────────────────────────────────────────────────────────────────
+// DIENSTEN
+// De 3 kaartjes in de "Onze Diensten" sectie
+// Beschikbare icons: Car, HeartHandshake, Award, PhoneCall, GraduationCap, PartyPopper
+// ─────────────────────────────────────────────────────────────────────
 export const services = [
   {
     title: 'Reguliere rijlessen',
@@ -29,6 +44,10 @@ export const services = [
   },
 ];
 
+// ─────────────────────────────────────────────────────────────────────
+// ZO WERKT HET
+// De 4 stappen in het proces
+// ─────────────────────────────────────────────────────────────────────
 export const howItWorksSteps = [
   {
     number: '01',
@@ -60,6 +79,11 @@ export const howItWorksSteps = [
   },
 ];
 
+// ─────────────────────────────────────────────────────────────────────
+// GOOGLE REVIEWS
+// Voeg hier nieuwe reviews toe
+// Rating is altijd een getal van 1-5
+// ─────────────────────────────────────────────────────────────────────
 export const testimonials = [
   {
     text: "Ik heb goede lessen gehad van Alex. Een superfijne instructeur die duidelijk uitleg geeft en met wie het altijd gezellig is. Bedankt!",
@@ -96,8 +120,18 @@ export const testimonials = [
     author: "Abdul Kayyum Abdulla",
     rating: 5,
   },
+  // ⬇️ VOEG HIER NIEUWE REVIEWS TOE ⬇️
+  // {
+  //   text: "Je review tekst hier...",
+  //   author: "Naam van de reviewer",
+  //   rating: 5,
+  // },
 ];
 
+// ─────────────────────────────────────────────────────────────────────
+// VEELGESTELDE VRAGEN (FAQ)
+// Deze verschijnen onderaan de contactpagina
+// ─────────────────────────────────────────────────────────────────────
 export const faqs = [
   {
     question: 'Hoeveel rijlessen heb ik nodig?',
@@ -131,5 +165,9 @@ export const faqs = [
     question: 'In welke regio geven jullie les?',
     answer: 'We geven rijlessen in IJmuiden, Haarlem, Velsen en omgeving. Vraag gerust naar de mogelijkheden in jouw woonplaats.',
   },
+  // ⬇️ VOEG HIER NIEUWE VRAGEN TOE ⬇️
+  // {
+  //   question: 'Je vraag hier?',
+  //   answer: 'Het antwoord hier.',
+  // },
 ];
-
