@@ -10,6 +10,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import MobileCTA from '@/components/MobileCTA';
 import BackToTop from '@/components/BackToTop';
 import CookieConsent from '@/components/CookieConsent';
+import TimedCTA from '@/components/TimedCTA';
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <MobileCTA />
       <BackToTop />
       <CookieConsent />
+      <TimedCTA />
     </div>
   );
 };
