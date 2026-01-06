@@ -15,7 +15,7 @@ const contactMethods = [
     value: siteConfig.phone,
     href: `tel:${siteConfig.phoneLink}`,
     color: 'from-secondary to-blue-400',
-    hoverBg: 'group-hover:bg-secondary/20',
+    hoverEffect: 'group-hover:bg-secondary/20 hover:shadow-glow-blue',
   },
   {
     icon: MessageCircle,
@@ -23,7 +23,7 @@ const contactMethods = [
     value: 'WhatsApp ons',
     href: `https://wa.me/${siteConfig.whatsapp}`,
     color: 'from-success to-emerald-400',
-    hoverBg: 'group-hover:bg-success/20',
+    hoverEffect: 'group-hover:bg-success/20 hover:shadow-[0_8px_32px_-8px_hsl(142,69%,45%,0.5)]',
   },
   {
     icon: Mail,
@@ -31,7 +31,7 @@ const contactMethods = [
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
     color: 'from-accent to-orange-400',
-    hoverBg: 'group-hover:bg-accent/20',
+    hoverEffect: 'group-hover:bg-accent/20 hover:shadow-glow-orange',
   },
 ];
 
@@ -97,7 +97,7 @@ const Contact = () => {
               href={method.href}
               target={method.href.startsWith('http') ? '_blank' : undefined}
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={`group bg-card rounded-2xl p-8 shadow-md border-2 border-border/50 hover:border-transparent transition-all duration-300 hover:-translate-y-2 ${method.hoverBg} text-center block`}
+              className={`group bg-card rounded-2xl p-8 shadow-md border-2 border-border/50 hover:border-transparent transition-all duration-300 hover:-translate-y-2 ${method.hoverEffect} text-center block`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
