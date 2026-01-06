@@ -103,11 +103,10 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                 <method.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-primary mb-3">{method.title}</h3>
-              <p className={`font-medium bg-gradient-to-r ${method.color} bg-clip-text text-transparent`}>{method.value}</p>
+              <h3 className="font-heading font-bold text-xl text-primary">{method.title}</h3>
             </motion.a>
           ))}
         </div>
