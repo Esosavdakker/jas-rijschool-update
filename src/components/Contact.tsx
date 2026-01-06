@@ -90,23 +90,23 @@ const Contact = () => {
         </motion.div>
 
         {/* Contact Cards */}
-        <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto mb-14">
+        <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto mb-14">
           {contactMethods.map((method, index) => (
             <motion.a
               key={method.title}
               href={method.href}
               target={method.href.startsWith('http') ? '_blank' : undefined}
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={`group bg-card rounded-2xl p-8 shadow-md border-2 border-border/50 hover:border-transparent transition-all duration-300 hover:-translate-y-2 ${method.hoverEffect} text-center block`}
+              className={`group bg-card rounded-xl p-5 shadow-md border-2 border-border/50 hover:border-transparent transition-all duration-300 hover:-translate-y-1 ${method.hoverEffect} text-center block w-36`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                <method.icon className="w-8 h-8 text-white" />
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <method.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-primary">{method.title}</h3>
+              <h3 className="font-heading font-semibold text-base text-primary">{method.title}</h3>
             </motion.a>
           ))}
         </div>
