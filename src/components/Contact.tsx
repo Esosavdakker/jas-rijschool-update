@@ -15,7 +15,7 @@ const contactMethods = [
     value: siteConfig.phone,
     href: `tel:${siteConfig.phoneLink}`,
     color: 'from-secondary to-blue-400',
-    hoverEffect: 'group-hover:bg-secondary/20 hover:shadow-glow-blue',
+    hoverEffect: 'hover:bg-secondary hover:shadow-glow-blue',
   },
   {
     icon: MessageCircle,
@@ -23,7 +23,7 @@ const contactMethods = [
     value: 'WhatsApp ons',
     href: `https://wa.me/${siteConfig.whatsapp}`,
     color: 'from-success to-emerald-400',
-    hoverEffect: 'group-hover:bg-success/20 hover:shadow-[0_8px_32px_-8px_hsl(142,69%,45%,0.5)]',
+    hoverEffect: 'hover:bg-success hover:shadow-[0_8px_32px_-8px_hsl(142,69%,45%,0.5)]',
   },
   {
     icon: Mail,
@@ -31,7 +31,7 @@ const contactMethods = [
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
     color: 'from-accent to-orange-400',
-    hoverEffect: 'group-hover:bg-accent/20 hover:shadow-glow-orange',
+    hoverEffect: 'hover:bg-accent hover:shadow-glow-orange',
   },
 ];
 
