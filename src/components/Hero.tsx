@@ -64,7 +64,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl text-white/90 mb-8 max-w-lg mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-white/90 mb-6 max-w-lg mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -72,6 +72,42 @@ const Hero = () => {
               Geen standaard lesjes, maar rijlessen die bij jou passen. 
               Met Alex als vaste instructeur haal je je rijbewijs relaxed én in één keer.
             </motion.p>
+
+            {/* Talen badge */}
+            <motion.div
+              className="flex items-center justify-center lg:justify-start gap-2 mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 }}
+            >
+              <span className="bg-white/20 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium border border-white/30">
+                🇳🇱 Nederlands
+              </span>
+              <span className="bg-white/20 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium border border-white/30">
+                🇬🇧 English
+              </span>
+            </motion.div>
+
+            {/* Voordelen */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-8 max-w-lg mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="flex items-center gap-2 text-white/90 text-sm">
+                <span className="text-green-400">✓</span> Hoge slagingspercentages
+              </div>
+              <div className="flex items-center gap-2 text-white/90 text-sm">
+                <span className="text-green-400">✓</span> Lage prijzen voor lessen & examens
+              </div>
+              <div className="flex items-center gap-2 text-white/90 text-sm">
+                <span className="text-green-400">✓</span> Flexibele planning, ook 's avonds
+              </div>
+              <div className="flex items-center gap-2 text-white/90 text-sm">
+                <span className="text-green-400">✓</span> Moderne, comfortabele lesauto
+              </div>
+            </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
               <Button variant="hero" size="xl" onClick={scrollToPackages} className="group">
