@@ -59,8 +59,8 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              Word klaar voor de weg met onze{' '}
-              <span className="text-accent italic">top-instructeurs</span>
+              Leren rijden?{' '}
+              <span className="text-accent italic">Doe het goed.</span>
             </motion.h1>
 
             <motion.p
@@ -69,8 +69,8 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Persoonlijke begeleiding, moderne lesauto's en een succesgerichte aanpak. 
-              Begin vandaag nog met jouw rijbewijs!
+              Geen standaard lesjes, maar rijlessen die bij jou passen. 
+              Met Alex als vaste instructeur haal je je rijbewijs relaxed én in één keer.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>

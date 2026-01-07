@@ -27,10 +27,10 @@ const Packages = () => {
         {/* Header */}
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4 section-underline">
-            Pakketten & Prijzen
+            Wat kost het?
           </h2>
           <p className="text-muted-foreground mt-8 max-w-2xl mx-auto">
-            Kies het pakket dat bij jou past en start direct met je rijopleiding
+            Geen verborgen kosten, gewoon eerlijke pakketten. Kies wat bij je past.
           </p>
           
           {/* Urgency Banner */}
@@ -43,7 +43,7 @@ const Packages = () => {
           >
             <div className="flex items-center gap-2 text-destructive">
               <Flame className="w-5 h-5 animate-pulse" />
-              <span className="font-bold">Nog 3 plekken beschikbaar deze maand!</span>
+              <span className="font-bold">Nog maar 3 plekken vrij deze maand</span>
             </div>
             <div className="hidden sm:flex items-center gap-1 text-muted-foreground text-sm">
               <Clock className="w-4 h-4" />
@@ -72,7 +72,7 @@ const Packages = () => {
                 </div>
               )}
 
-              <div className={`h-full bg-card rounded-2xl p-6 shadow-md border-2 transition-all duration-300 hover:shadow-glow-orange hover:-translate-y-2 flex flex-col ${
+              <div className={`h-full bg-card rounded-2xl p-6 shadow-md border-2 transition-all duration-300 hover:shadow-glow-orange hover:-translate-y-3 hover:rotate-1 flex flex-col tilt-card ${
                 pkg.popular ? 'border-accent' : 'border-accent/30 hover:border-accent/60'
               }`}>
                 <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg inline-block mb-4 w-fit mx-auto">
@@ -90,7 +90,7 @@ const Packages = () => {
                   ))}
                 </ul>
 
-                <Button variant="accent" className="w-full" onClick={() => scrollToContact(`Ik wil me aanmelden voor ${pkg.name}`)}>
+                <Button variant="accent" className="w-full click-bounce pulse-cta" onClick={() => scrollToContact(`Ik wil me aanmelden voor ${pkg.name}`)}>
                   Aanmelden
                 </Button>
               </div>

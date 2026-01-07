@@ -25,20 +25,20 @@ export const navItems = [
 // ─────────────────────────────────────────────────────────────────────
 export const services = [
   {
-    title: 'Reguliere rijlessen',
-    description: 'Begin vanaf het instapniveau en bouw stap voor stap vertrouwen op in het verkeer.',
+    title: 'Rijlessen',
+    description: 'Of je nu net begint of al wat ervaring hebt — we bouwen samen aan jouw rijvaardigheden. Op jouw tempo, zonder stress.',
     icon: 'Car',
     color: 'from-secondary to-blue-400',
   },
   {
-    title: 'Faalangstbegeleiding',
-    description: 'Speciale begeleiding voor leerlingen die last hebben van faalangst, examenstress of spanning achter het stuur.',
+    title: 'Faalangst? Geen probleem',
+    description: 'Zenuwachtig voor het examen? Alex snapt dat als geen ander. Rustige begeleiding, geduld en een veilige sfeer. Je kunt het.',
     icon: 'HeartHandshake',
     color: 'from-accent to-orange-400',
   },
   {
-    title: 'Praktijkexamen & begeleiding',
-    description: 'Wij nemen je mee tot aan het examen met onze auto en zorgen voor optimale voorbereiding.',
+    title: 'Examen? Wij regelen het',
+    description: 'Van aanmelding tot de rit naar het CBR — wij zorgen dat je relaxed op komt dagen. In onze auto, met vertrouwen.',
     icon: 'Award',
     color: 'from-primary to-blue-600',
   },
@@ -51,29 +51,29 @@ export const services = [
 export const howItWorksSteps = [
   {
     number: '01',
-    title: 'Gratis kennismaking',
-    description: 'Bel of WhatsApp ons voor een gratis kennismakingsgesprek. We bespreken je wensen en plannen een proefles.',
+    title: 'Even bellen of appen',
+    description: 'Stuur een berichtje via WhatsApp of bel even. We plannen een proefles in en kijken wat jij nodig hebt.',
     icon: 'PhoneCall',
     color: 'from-secondary to-blue-400',
   },
   {
     number: '02',
-    title: 'Rijlessen op maat',
-    description: 'Je krijgt persoonlijke begeleiding afgestemd op jouw niveau. We werken samen aan je rijvaardigheid en zelfvertrouwen.',
+    title: 'Lekker leren rijden',
+    description: 'Geen standaard lessen, maar afgestemd op jou. Waar jij moeite mee hebt, daar focussen we op. Simpel.',
     icon: 'Car',
     color: 'from-accent to-orange-400',
   },
   {
     number: '03',
-    title: 'Examenvoorbereiding',
-    description: 'Als je klaar bent, bereiden we je optimaal voor op het praktijkexamen. We oefenen examensituaties en routes.',
+    title: 'Klaar voor het examen',
+    description: 'We oefenen de routes die het CBR gebruikt en zorgen dat je niks kan verrassen. Je gaat goed voorbereid.',
     icon: 'GraduationCap',
     color: 'from-primary to-blue-600',
   },
   {
     number: '04',
-    title: 'Rijbewijs behaald!',
-    description: 'Met de juiste voorbereiding haal je je rijbewijs. Je bent klaar om zelfstandig de weg op te gaan!',
+    title: 'Yes! Geslaagd 🎉',
+    description: 'En dan is het zover: jouw rijbewijs. Zelfstandig op pad, wanneer jij wilt. Gefeliciteerd!',
     icon: 'PartyPopper',
     color: 'from-success to-emerald-400',
   },
@@ -134,36 +134,36 @@ export const testimonials = [
 // ─────────────────────────────────────────────────────────────────────
 export const faqs = [
   {
-    question: 'Hoeveel rijlessen heb ik nodig?',
-    answer: 'Dit verschilt per persoon. Gemiddeld hebben leerlingen 30-40 lessen nodig. Bij de proefles maken we een inschatting op basis van jouw ervaring en leervermogen.',
+    question: 'Hoeveel lessen heb ik nodig?',
+    answer: 'Dat is voor iedereen anders. De meeste leerlingen hebben zo\'n 30-40 lessen nodig, maar bij de proefles schatten we dat samen in. Geen verrassingen achteraf.',
   },
   {
-    question: 'Wat kost een rijles?',
-    answer: 'Een losse rijles kost €55. Bij onze pakketten krijg je korting: hoe meer lessen je afneemt, hoe voordeliger het wordt. Bekijk onze pakketten voor de exacte prijzen.',
+    question: 'Wat kost een les?',
+    answer: 'Een losse les is €55. Maar eerlijk? Met een pakket ben je voordeliger uit. Hoe meer lessen, hoe meer korting.',
   },
   {
-    question: 'Hoe lang duurt een rijles?',
-    answer: 'Een standaard rijles duurt 60 minuten. We starten bij jouw locatie en brengen je daar ook weer terug.',
+    question: 'Hoe lang duurt een les?',
+    answer: '60 minuten. We halen je thuis op en brengen je weer terug. Makkelijk toch?',
   },
   {
-    question: 'Kan ik lessen in mijn eigen auto?',
-    answer: 'Nee, de rijlessen worden gegeven in onze moderne lesauto die voorzien is van dubbele bediening voor jouw veiligheid.',
+    question: 'Kan ik in mijn eigen auto lessen?',
+    answer: 'Nee, je rijdt in onze lesauto. Die heeft dubbele bediening, dus je bent altijd veilig — ook als het even spannend wordt.',
   },
   {
-    question: 'Wat als ik faalangst heb?',
-    answer: 'Geen zorgen! Alex heeft ruime ervaring met leerlingen die faalangst hebben. We werken in een rustgevende omgeving en op jouw tempo. Samen zorgen we ervoor dat je je vertrouwd voelt achter het stuur.',
+    question: 'Ik ben zenuwachtig, is dat erg?',
+    answer: 'Helemaal niet! Alex heeft veel ervaring met leerlingen die stress of faalangst hebben. Rustige uitleg, geduld, en we gaan pas verder als jij er klaar voor bent.',
   },
   {
-    question: 'Hoe snel kan ik starten?',
-    answer: 'Na aanmelding kunnen we meestal binnen een week starten met de eerste les. Neem contact op voor de actuele beschikbaarheid.',
+    question: 'Wanneer kan ik beginnen?',
+    answer: 'Meestal binnen een week na aanmelding. Stuur even een berichtje en we plannen het in.',
   },
   {
-    question: 'Regelen jullie ook het examen?',
-    answer: 'Ja! Bij onze pakketten regelen wij de examenaanvraag en brengen we je met de lesauto naar het CBR voor je praktijkexamen.',
+    question: 'Regelen jullie het examen ook?',
+    answer: 'Jazeker! Wij melden je aan bij het CBR en brengen je met de lesauto. Jij hoeft alleen maar op te komen dagen.',
   },
   {
-    question: 'In welke regio geven jullie les?',
-    answer: 'We geven rijlessen in IJmuiden, Haarlem, Velsen en omgeving. Vraag gerust naar de mogelijkheden in jouw woonplaats.',
+    question: 'Waar geven jullie les?',
+    answer: 'In IJmuiden, Haarlem, Velsen en omgeving. Twijfel je of we bij jou in de buurt komen? Vraag het even!',
   },
   // ⬇️ VOEG HIER NIEUWE VRAGEN TOE ⬇️
   // {
