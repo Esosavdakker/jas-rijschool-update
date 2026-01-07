@@ -42,8 +42,6 @@ const FloatingWhatsApp = () => {
         >
           <MessageCircle className="w-6 h-6" />
           <span className="font-semibold hidden sm:inline">WhatsApp ons</span>
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full animate-ping" />
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full" />
         </motion.a>
       )}
     </AnimatePresence>
