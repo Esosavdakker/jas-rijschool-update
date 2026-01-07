@@ -1,4 +1,73 @@
-# Welcome to your Lovable project
+# JAS-Rijschool Website
+
+Een moderne, snelle website voor JAS-Rijschool gebouwd met React, TypeScript en Tailwind CSS.
+
+## 🚀 Performance Optimalisaties
+
+- **Font Loading**: Async font loading met `display=swap` voor snellere First Contentful Paint
+- **Image Preloading**: Hero afbeeldingen worden voorgeladen voor vloeiende slideshows
+- **Lazy Loading**: Afbeeldingen buiten viewport worden pas geladen wanneer nodig
+- **DNS Prefetch**: Externe resources worden vooraf opgelost
+
+## 📁 Projectstructuur
+
+```
+src/
+├── assets/           # Afbeeldingen en media
+├── components/       # React componenten
+│   ├── ui/          # Herbruikbare UI componenten (shadcn/ui)
+│   └── *.tsx        # Feature componenten (Hero, Contact, etc.)
+├── config/          # Configuratie bestanden
+│   ├── site.ts      # Website configuratie (contact, social)
+│   ├── content.ts   # Tekst content
+│   └── packages.ts  # Rijles pakketten
+├── hooks/           # Custom React hooks
+├── integrations/    # Externe integraties (Supabase)
+├── lib/             # Utility functies
+│   ├── utils.ts     # Algemene utilities
+│   └── performance.ts # Performance helpers
+├── pages/           # Route pagina's
+├── App.tsx          # Root component met routing
+├── main.tsx         # Entry point
+└── index.css        # Design system tokens
+```
+
+## 🎨 Design System
+
+Het design system is gedefinieerd in:
+- `src/index.css` - CSS variabelen en Tailwind utilities
+- `tailwind.config.ts` - Tailwind configuratie
+
+### Kleuren (HSL formaat)
+- **Primary**: Donkerblauw (merk kleur)
+- **Accent**: Oranje (CTA's en highlights)
+- **Secondary**: Lichtblauw (ondersteunend)
+
+## 🔒 Beveiliging & Privacy
+
+- GDPR-compliant contactformulier met toestemmingsregistratie
+- Row Level Security (RLS) op database niveau
+- Admin role-based access control
+
+## 📱 SEO
+
+- Gestructureerde data (JSON-LD) voor DrivingSchool en FAQ
+- Open Graph en Twitter meta tags
+- Semantic HTML met juiste heading hiërarchie
+- Responsive design met mobile-first approach
+
+## 🛠️ Development
+
+```bash
+npm install
+npm run dev
+```
+
+## 📦 Build
+
+```bash
+npm run build
+```
 
 ## Project info
 
