@@ -139,7 +139,7 @@ export const faqs = [
   },
   {
     question: 'Wat kost een les?',
-    answer: 'Een losse les is €55. Maar eerlijk? Met een pakket ben je voordeliger uit. Hoe meer lessen, hoe meer korting.',
+    answer: 'Een losse les is €58. Maar eerlijk? Met een pakket ben je voordeliger uit. Hoe meer lessen, hoe meer korting.',
   },
   {
     question: 'Hoe lang duurt een les?',
