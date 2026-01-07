@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { preloadImages } from '@/lib/performance';
 import studentPassed1 from '@/assets/student-passed-1.jpg';
 import studentPassed2 from '@/assets/student-passed-2.jpg';
 import studentPassed3 from '@/assets/student-passed-3.jpg';
@@ -11,6 +12,11 @@ import studentPassed5 from '@/assets/student-passed-5.jpg';
 import studentPassed6 from '@/assets/student-passed-6.jpg';
 
 const heroImages = [studentPassed1, studentPassed2, studentPassed3, studentPassed4, studentPassed5, studentPassed6];
+
+// Preload hero images for faster slideshow
+if (typeof window !== 'undefined') {
+  preloadImages(heroImages);
+}
 
 const stats = [
   { number: siteConfig.stats.passedStudents, label: 'Geslaagden' },
@@ -26,9 +32,9 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const scrollToPackages = () => {
+  const scrollToPackages = useCallback(() => {
     document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, []);
 
   return (
     <section id="home" className="relative min-h-screen hero-gradient overflow-hidden pt-20">
@@ -105,8 +111,10 @@ const Hero = () => {
                   <motion.img
                     key={currentSlide}
                     src={heroImages[currentSlide]}
-                    alt="Geslaagde leerling"
+                    alt={`Geslaagde leerling ${currentSlide + 1} bij JAS-Rijschool`}
                     className="w-full h-full object-cover"
+                    loading={currentSlide === 0 ? 'eager' : 'lazy'}
+                    decoding={currentSlide === 0 ? 'sync' : 'async'}
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
