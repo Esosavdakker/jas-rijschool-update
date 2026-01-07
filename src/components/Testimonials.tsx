@@ -43,7 +43,7 @@ const Testimonials = () => (
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
           >
-            <div className="h-full bg-card rounded-2xl p-6 shadow-md border-2 border-accent/20 hover:border-accent/40 hover:shadow-glow-orange transition-all duration-300 hover:-translate-y-2 flex flex-col">
+            <div className="h-full bg-card rounded-2xl p-6 shadow-md border-2 border-accent/20 hover:border-accent/40 hover:shadow-glow-orange transition-all duration-300 hover:-translate-y-3 hover:rotate-1 flex flex-col tilt-card">
               <Quote className="w-10 h-10 text-accent/30 mb-4" />
 
               <div className="flex gap-1 mb-4">

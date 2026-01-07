@@ -15,10 +15,10 @@ const Services = () => (
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4 section-underline">
-          Onze Diensten
+          Wat kunnen we voor je doen?
         </h2>
         <p className="text-muted-foreground mt-8 max-w-2xl mx-auto">
-          Wij bieden diverse rijopleidingen aan die aansluiten bij jouw niveau en wensen
+          Bij JAS-Rijschool draait alles om jou. Geen standaard programma — we kijken wat jij nodig hebt.
         </p>
       </motion.div>
 
@@ -35,17 +35,17 @@ const Services = () => (
               viewport={{ once: true }}
               transition={{ delay: index * 0.15 }}
             >
-              <div className="relative bg-card rounded-2xl p-8 shadow-md border border-border/50 transition-all duration-500 group-hover:shadow-premium-lg group-hover:-translate-y-2 h-full">
+              <div className="relative bg-card rounded-2xl p-8 shadow-md border border-border/50 transition-all duration-500 group-hover:shadow-premium-lg group-hover:-translate-y-3 h-full tilt-card">
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                 
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className="w-8 h-8 text-white" />
+                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                  <Icon className="w-8 h-8 text-white icon-spin" />
                 </div>
 
                 <h3 className="text-xl font-heading font-bold text-primary mb-3">{service.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{service.description}</p>
 
-                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
               </div>
             </motion.div>
           );

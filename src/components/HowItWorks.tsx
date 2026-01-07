@@ -15,10 +15,10 @@ const HowItWorks = () => (
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4 section-underline">
-          Zo Werkt Het
+          Hoe werkt het?
         </h2>
         <p className="text-muted-foreground mt-8 max-w-2xl mx-auto">
-          In 4 stappen van beginner naar rijbewijs
+          Van je eerste les tot je rijbewijs — zo pakken we het aan
         </p>
       </motion.div>
 
@@ -68,10 +68,10 @@ const HowItWorks = () => (
       >
         <a
           href="#contact"
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-orange-400 hover:from-accent/90 hover:to-orange-400/90 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-glow-orange transition-all duration-300"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-orange-400 hover:from-accent/90 hover:to-orange-400/90 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-glow-orange transition-all duration-300 hover:scale-105"
         >
           <PhoneCall className="w-5 h-5" />
-          Start je rijles avontuur
+          Zullen we bellen?
         </a>
       </motion.div>
     </div>
