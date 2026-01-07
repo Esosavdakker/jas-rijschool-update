@@ -31,7 +31,7 @@ const FloatingWhatsApp = () => {
           href={`https://wa.me/${siteConfig.whatsapp}?text=${message}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[hsl(142,69%,45%)] hover:bg-[hsl(142,69%,40%)] text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+          className="fixed bottom-6 right-20 z-50 flex items-center gap-3 bg-[hsl(142,69%,45%)] hover:bg-[hsl(142,69%,40%)] text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
