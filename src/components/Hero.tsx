@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, MessageCircle } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { preloadImages } from '@/lib/performance';
 import studentPassed1 from '@/assets/student-passed-1.jpg';
@@ -109,11 +109,26 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.6 }}
+            >
               <Button variant="hero" size="xl" onClick={scrollToPackages} className="group">
                 Bekijk onze pakketten
                 <ChevronRight className="transition-transform group-hover:translate-x-1" />
               </Button>
+              <a
+                href={`https://wa.me/${siteConfig.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" size="xl" className="border-white/30 bg-white/10 hover:bg-white/20 text-white group">
+                  <MessageCircle className="w-5 h-5" />
+                  WhatsApp ons
+                </Button>
+              </a>
             </motion.div>
 
             {/* Stats */}
