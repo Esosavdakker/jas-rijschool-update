@@ -70,7 +70,7 @@ const Hero = () => {
               transition={{ delay: 0.4 }}
             >
               Geen standaard lesjes, maar rijlessen die bij jou passen. 
-              Met Alex als vaste instructeur haal je je rijbewijs relaxed én in één keer.
+              Bij Jas-Rijschool haal je je rijbewijs relaxed én in één keer.
             </motion.p>
 
             {/* Talen badge */}
