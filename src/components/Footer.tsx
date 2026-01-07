@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, MapPin, Phone, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { siteConfig } from '@/config/site';
 
 const Footer = () => (
@@ -98,9 +99,9 @@ const Footer = () => (
         <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
           <p className="text-muted-foreground text-xs md:text-sm text-center">© {new Date().getFullYear()} {siteConfig.name}. Alle rechten voorbehouden.</p>
           <div className="flex gap-4 md:gap-6 text-xs md:text-sm">
-            <a href="#privacy" className="text-accent hover:text-primary transition-colors">Privacy</a>
+            <Link to="/privacy" className="text-accent hover:text-primary transition-colors">Privacy</Link>
             <span className="text-muted-foreground">|</span>
-            <a href="#algemene-voorwaarden" className="text-accent hover:text-primary transition-colors">Voorwaarden</a>
+            <Link to="/voorwaarden" className="text-accent hover:text-primary transition-colors">Voorwaarden</Link>
           </div>
         </div>
       </div>
