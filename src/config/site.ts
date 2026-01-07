@@ -46,7 +46,7 @@ export const siteConfig = {
   // Pas deze aan wanneer je nieuwe mijlpalen bereikt!
   // ─────────────────────────────────────────────────────────────────────
   stats: {
-    passedStudents: '500+',   // Aantal geslaagde leerlingen
+    passedStudents: '100+',   // Aantal geslaagde leerlingen
     googleRating: '4.9',      // Google review score
     yearsExperience: '5+',    // Jaren ervaring
     reviewCount: '50+',       // Aantal Google reviews
