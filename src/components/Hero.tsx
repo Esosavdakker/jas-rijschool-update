@@ -59,8 +59,8 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              Leren rijden?{' '}
-              <span className="text-accent italic">Doe het goed.</span>
+              Zeker rijden{' '}
+              <span className="text-accent italic">begint hier.</span>
             </motion.h1>
 
             <motion.p
