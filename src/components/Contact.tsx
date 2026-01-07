@@ -7,6 +7,17 @@ import { supabase } from '@/integrations/supabase/client';
 import { siteConfig } from '@/config/site';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { faqs } from '@/config/content';
+import { Checkbox } from '@/components/ui/checkbox';
+import { z } from 'zod';
+
+// GDPR-compliant input validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, 'Naam is verplicht').max(100, 'Naam mag maximaal 100 tekens zijn'),
+  email: z.string().trim().email('Voer een geldig e-mailadres in').max(255, 'E-mail mag maximaal 255 tekens zijn'),
+  phone: z.string().trim().max(20, 'Telefoonnummer mag maximaal 20 tekens zijn').optional().or(z.literal('')),
+  message: z.string().trim().min(1, 'Bericht is verplicht').max(2000, 'Bericht mag maximaal 2000 tekens zijn'),
+  gdprConsent: z.literal(true, { errorMap: () => ({ message: 'Je moet akkoord gaan met de privacyverklaring' }) }),
+});
 
 const contactMethods = [
   {
@@ -36,19 +47,17 @@ const contactMethods = [
 ];
 
 const Contact = () => {
-  const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formState.name || !formState.email || !formState.message) {
-      toast.error('Vul alle velden in', { icon: <AlertCircle className="w-5 h-5" /> });
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
-      toast.error('Voer een geldig e-mailadres in');
+    // Validate with zod schema
+    const validation = contactSchema.safeParse(formState);
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast.error(firstError.message, { icon: <AlertCircle className="w-5 h-5" /> });
       return;
     }
 
@@ -59,19 +68,25 @@ const Contact = () => {
       const packageName = packageMatch ? packageMatch[0] : 'Algemeen contact';
 
       const { error } = await supabase.from('package_signups').insert({
-        name: formState.name.trim(),
-        email: formState.email.trim(),
-        phone: formState.phone.trim() || null,
+        name: validation.data.name,
+        email: validation.data.email,
+        phone: validation.data.phone || null,
         package_name: packageName,
-        message: formState.message.trim(),
+        message: validation.data.message,
+        gdpr_consent: true,
+        consent_timestamp: new Date().toISOString(),
+        data_retention_until: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000 * 2).toISOString(), // 2 years retention
       });
 
       if (error) throw error;
       
       toast.success('Bericht verzonden! We nemen snel contact op.', { icon: <CheckCircle className="w-5 h-5" /> });
-      setFormState({ name: '', email: '', phone: '', message: '' });
+      setFormState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
     } catch (error) {
-      console.error('Error saving signup:', error);
+      // Only log in development to prevent info leakage
+      if (import.meta.env.DEV) {
+        console.error('Error saving signup:', error);
+      }
       toast.error('Er ging iets mis. Probeer het opnieuw.');
     } finally {
       setIsSubmitting(false);
@@ -117,11 +132,27 @@ const Contact = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
-              <input type="text" placeholder="Naam" value={formState.name} onChange={(e) => setFormState({ ...formState, name: e.target.value })} className={inputClass} />
-              <input type="email" placeholder="E-mail" value={formState.email} onChange={(e) => setFormState({ ...formState, email: e.target.value })} className={inputClass} />
+              <input type="text" placeholder="Naam" value={formState.name} maxLength={100} onChange={(e) => setFormState({ ...formState, name: e.target.value })} className={inputClass} />
+              <input type="email" placeholder="E-mail" value={formState.email} maxLength={255} onChange={(e) => setFormState({ ...formState, email: e.target.value })} className={inputClass} />
             </div>
-            <input type="tel" placeholder="Telefoonnummer (optioneel)" value={formState.phone} onChange={(e) => setFormState({ ...formState, phone: e.target.value })} className={inputClass} />
-            <textarea id="message" placeholder="Bericht" rows={5} value={formState.message} onChange={(e) => setFormState({ ...formState, message: e.target.value })} className={`${inputClass} resize-none`} />
+            <input type="tel" placeholder="Telefoonnummer (optioneel)" value={formState.phone} maxLength={20} onChange={(e) => setFormState({ ...formState, phone: e.target.value })} className={inputClass} />
+            
+            <textarea id="message" placeholder="Bericht (max. 2000 tekens)" rows={5} value={formState.message} maxLength={2000} onChange={(e) => setFormState({ ...formState, message: e.target.value })} className={`${inputClass} resize-none`} />
+            
+            {/* GDPR Consent Checkbox */}
+            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-xl border border-border/50">
+              <Checkbox 
+                id="gdpr-consent" 
+                checked={formState.gdprConsent}
+                onCheckedChange={(checked) => setFormState({ ...formState, gdprConsent: checked === true })}
+                className="mt-1"
+              />
+              <label htmlFor="gdpr-consent" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                Ik ga akkoord met de verwerking van mijn gegevens conform de{' '}
+                <a href="/privacy" className="text-accent hover:underline font-medium">privacyverklaring</a>. 
+                Je gegevens worden maximaal 2 jaar bewaard en worden niet gedeeld met derden.
+              </label>
+            </div>
 
             <div className="text-center">
               <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="min-w-[200px]">
