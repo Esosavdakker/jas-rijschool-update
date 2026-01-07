@@ -60,7 +60,7 @@ const Hero = () => {
               transition={{ delay: 0.2 }}
             >
               Zeker rijden{' '}
-              <span className="text-accent italic">begint hier.</span>
+              <span className="text-accent italic">begint hier!</span>
             </motion.h1>
 
             <motion.p
