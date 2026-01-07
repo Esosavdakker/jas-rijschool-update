@@ -48,7 +48,7 @@ export const siteConfig = {
   stats: {
     passedStudents: '500+',   // Aantal geslaagde leerlingen
     googleRating: '4.9',      // Google review score
-    yearsExperience: '10+',   // Jaren ervaring
+    yearsExperience: '5+',    // Jaren ervaring
     reviewCount: '50+',       // Aantal Google reviews
   },
 };
