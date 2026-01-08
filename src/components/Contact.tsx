@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Phone, MessageCircle, Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
-import { supabase } from '@/integrations/supabase/client';
 import { siteConfig } from '@/config/site';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { faqs } from '@/config/content';
 import { Checkbox } from '@/components/ui/checkbox';
 import { z } from 'zod';
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
 // GDPR-compliant input validation schema
 const contactSchema = z.object({
@@ -76,18 +77,31 @@ const Contact = () => {
       const packageMatch = formState.message.match(/Pakket [A-D]|Pakket \d|rijles|examen|TTT|Faalangst/i);
       const packageName = packageMatch ? packageMatch[0] : 'Algemeen contact';
 
-      const { error } = await supabase.from('package_signups').insert({
-        name: validation.data.name,
-        email: validation.data.email,
-        phone: validation.data.phone || null,
-        package_name: packageName,
-        message: validation.data.message,
-        gdpr_consent: true,
-        consent_timestamp: new Date().toISOString(),
-        data_retention_until: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000 * 2).toISOString(), // 2 years retention
+      const response = await fetch(`${SUPABASE_URL}/functions/v1/submit-contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: validation.data.name,
+          email: validation.data.email,
+          phone: validation.data.phone || null,
+          package_name: packageName,
+          message: validation.data.message,
+          gdpr_consent: true,
+        }),
       });
 
-      if (error) throw error;
+      const result = await response.json();
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          toast.error(result.error || 'Te veel verzoeken. Probeer het later opnieuw.', { icon: <AlertCircle className="w-5 h-5" /> });
+        } else {
+          throw new Error(result.error || 'Er ging iets mis');
+        }
+        return;
+      }
       
       toast.success('Bericht verzonden! We nemen snel contact op.', { icon: <CheckCircle className="w-5 h-5" /> });
       setFormState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
