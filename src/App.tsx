@@ -5,12 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Comparison from "./pages/Comparison";
+import CheatSheet from "./pages/CheatSheet";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
-
-// Dev-only imports
-const Comparison = import.meta.env.DEV ? (await import("./pages/Comparison")).default : null;
-const CheatSheet = import.meta.env.DEV ? (await import("./pages/CheatSheet")).default : null;
 
 const queryClient = new QueryClient();
 
@@ -22,15 +20,10 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/vergelijking" element={<Comparison />} />
+          <Route path="/cheat-sheet" element={<CheatSheet />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/voorwaarden" element={<Terms />} />
-          {/* Dev-only routes */}
-          {import.meta.env.DEV && Comparison && (
-            <Route path="/vergelijking" element={<Comparison />} />
-          )}
-          {import.meta.env.DEV && CheatSheet && (
-            <Route path="/cheat-sheet" element={<CheatSheet />} />
-          )}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
