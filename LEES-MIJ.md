@@ -1,10 +1,10 @@
 # JAS-Rijschool Website
 
-Welkom bij de codebase van de JAS-Rijschool website! Dit document helpt jou en Alex om makkelijk wijzigingen te maken.
+Dit document helpt om makkelijk wijzigingen te maken.
 
 ---
 
-## 📁 Structuur
+## Structuur
 
 ```
 src/
@@ -33,9 +33,10 @@ src/
 
 ---
 
-## ✏️ VEELVOORKOMENDE WIJZIGINGEN
+## VEELVOORKOMENDE WIJZIGINGEN
 
 ### 1. Contactgegevens wijzigen
+
 **Bestand:** `src/config/site.ts`
 
 ```ts
@@ -44,7 +45,7 @@ export const siteConfig = {
   phoneLink: '+31644792093',   // Telefoonnummer (klikbaar)
   whatsapp: '31644792093',     // WhatsApp (zonder +)
   email: 'jasrijschool@gmail.com',
-  
+
   address: {
     street: 'Reggestraat 38',
     postcode: '1972 WL',
@@ -54,6 +55,7 @@ export const siteConfig = {
 ```
 
 ### 2. Prijzen wijzigen
+
 **Bestand:** `src/config/packages.ts`
 
 ```ts
@@ -74,6 +76,7 @@ export const extraOptions = [
 ```
 
 ### 3. Teksten en reviews wijzigen
+
 **Bestand:** `src/config/content.ts`
 
 ```ts
@@ -98,6 +101,7 @@ export const faqs = [
 ```
 
 ### 4. Foto's van geslaagde leerlingen
+
 **Map:** `src/assets/`
 
 1. Voeg nieuwe foto toe: `student-passed-7.jpg` (etc.)
@@ -113,28 +117,35 @@ export const faqs = [
 
 ---
 
-## ⚙️ INSTELLINGEN
+## INSTELLINGEN
 
 ### Cookie banner timing
+
 **Bestand:** `src/components/CookieConsent.tsx`
+
 - Regel ~13: `setTimeout(() => setIsVisible(true), 1500)` → 1500ms = 1.5 seconde vertraging
 
 ### Proefles popup timing
+
 **Bestand:** `src/components/TimedCTA.tsx`
+
 - Regel ~18: `240000` = 4 minuten (in milliseconden)
 - Wijzig naar bijv. `60000` voor 1 minuut
 
 ### WhatsApp knop
+
 **Bestand:** `src/components/FloatingWhatsApp.tsx`
+
 - Gebruikt automatisch het nummer uit `src/config/site.ts`
 
 ---
 
-## 📊 DATABASE (Supabase/Lovable Cloud)
+## DATABASE (Supabase/Lovable Cloud)
 
 Inzendingen van het contactformulier worden opgeslagen in de database.
 
 **Tabel:** `package_signups`
+
 - `name` - Naam van de bezoeker
 - `email` - E-mailadres
 - `phone` - Telefoonnummer (optioneel)
@@ -143,7 +154,7 @@ Inzendingen van het contactformulier worden opgeslagen in de database.
 
 ---
 
-## 🎨 STYLING
+## STYLING
 
 De website gebruikt een consistent kleurenpalet gedefinieerd in `src/index.css`:
 
@@ -154,7 +165,7 @@ De website gebruikt een consistent kleurenpalet gedefinieerd in `src/index.css`:
 
 ---
 
-## ❓ HULP NODIG?
+## HULP NODIG?
 
 1. **Kleine tekstwijzigingen**: Wijzig in de `/config/` bestanden
 2. **Visuele wijzigingen**: Pas de component aan in `/components/`
@@ -162,4 +173,4 @@ De website gebruikt een consistent kleurenpalet gedefinieerd in `src/index.css`:
 
 ---
 
-*Laatst bijgewerkt: Januari 2026*
+_Laatst bijgewerkt: Januari 2026_
