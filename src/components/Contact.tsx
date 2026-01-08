@@ -48,10 +48,19 @@ const contactMethods = [
 
 const Contact = () => {
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
+  const [honeypot, setHoneypot] = useState(''); // Bot trap - hidden field
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, it's a bot
+    if (honeypot) {
+      // Silently pretend success to not alert the bot
+      toast.success('Bericht verzonden! We nemen snel contact op.', { icon: <CheckCircle className="w-5 h-5" /> });
+      setFormState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
+      return;
+    }
     
     // Validate with zod schema
     const validation = contactSchema.safeParse(formState);
@@ -131,6 +140,20 @@ const Contact = () => {
           <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary text-center mb-8">Stuur ons een bericht</h3>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Honeypot field - hidden from users, visible to bots */}
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
+              <label htmlFor="website">Website (laat leeg)</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+            
             <div className="grid md:grid-cols-2 gap-6">
               <input type="text" placeholder="Naam" value={formState.name} maxLength={100} onChange={(e) => setFormState({ ...formState, name: e.target.value })} className={inputClass} />
               <input type="email" placeholder="E-mail" value={formState.email} maxLength={255} onChange={(e) => setFormState({ ...formState, email: e.target.value })} className={inputClass} />
