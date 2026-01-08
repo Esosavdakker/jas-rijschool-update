@@ -98,6 +98,20 @@ const comparisonData: ComparisonItem[] = [
     category: "Functionaliteit",
     improvement: "Makkelijk terug naar boven scrollen"
   },
+  {
+    feature: "Cookie consent banner",
+    oldWebsite: false,
+    newWebsite: true,
+    category: "Functionaliteit",
+    improvement: "AVG-compliant cookie melding met accepteren/weigeren"
+  },
+  {
+    feature: "Timed CTA popup",
+    oldWebsite: false,
+    newWebsite: true,
+    category: "Functionaliteit",
+    improvement: "Proefles reminder na 4 minuten browsen"
+  },
   
   // Content
   {
@@ -150,6 +164,22 @@ const comparisonData: ComparisonItem[] = [
     improvement: "Kan toegevoegd worden aan FAQ of footer"
   },
   
+  // Juridisch & Privacy
+  {
+    feature: "Privacyverklaring pagina",
+    oldWebsite: false,
+    newWebsite: true,
+    category: "Juridisch",
+    improvement: "Volledige AVG/GDPR compliant privacy pagina"
+  },
+  {
+    feature: "Algemene Voorwaarden pagina",
+    oldWebsite: false,
+    newWebsite: true,
+    category: "Juridisch",
+    improvement: "Professionele voorwaarden voor rijlessen & pakketten"
+  },
+  
   // Technisch
   {
     feature: "Tech stack",
@@ -187,7 +217,8 @@ const categoryIcons: Record<string, React.ReactNode> = {
   "Design & UX": <Palette className="w-5 h-5" />,
   "Functionaliteit": <Zap className="w-5 h-5" />,
   "Content": <MessageSquare className="w-5 h-5" />,
-  "Technisch": <Shield className="w-5 h-5" />,
+  "Juridisch": <Shield className="w-5 h-5" />,
+  "Technisch": <Monitor className="w-5 h-5" />,
 };
 
 const renderValue = (value: string | boolean) => {
