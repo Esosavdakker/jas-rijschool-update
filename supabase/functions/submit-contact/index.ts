@@ -1,4 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { Resend } from 'https://esm.sh/resend@2.0.0'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -12,7 +13,6 @@ const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 3 // Max 3 submissions per minute per IP
 
 function getClientIP(req: Request): string {
-  // Try various headers that might contain the real IP
   const forwarded = req.headers.get('x-forwarded-for')
   if (forwarded) {
     return forwarded.split(',')[0].trim()
@@ -21,7 +21,6 @@ function getClientIP(req: Request): string {
   if (realIP) {
     return realIP
   }
-  // Fallback - use a hash of user-agent + other headers for some differentiation
   const ua = req.headers.get('user-agent') || 'unknown'
   return `ua-${ua.substring(0, 50)}`
 }
@@ -43,7 +42,6 @@ function isRateLimited(ip: string): boolean {
   return false
 }
 
-// Simple hash function for IP anonymization
 async function hashIP(ip: string): Promise<string> {
   const encoder = new TextEncoder()
   const data = encoder.encode(ip + '-salt-jas-rijschool')
@@ -53,7 +51,6 @@ async function hashIP(ip: string): Promise<string> {
 }
 
 Deno.serve(async (req) => {
-  // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders })
   }
@@ -68,7 +65,6 @@ Deno.serve(async (req) => {
   try {
     const clientIP = getClientIP(req)
     
-    // Check rate limit
     if (isRateLimited(clientIP)) {
       return new Response(
         JSON.stringify({ error: 'Te veel verzoeken. Probeer het over een minuut opnieuw.' }),
@@ -119,15 +115,15 @@ Deno.serve(async (req) => {
       )
     }
 
-    // Create Supabase client with service role for insert
+    // Create Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
-    // Hash IP for privacy
     const ipHash = await hashIP(clientIP)
 
-    const { error } = await supabase.from('package_signups').insert({
+    // Save to database
+    const { error: dbError } = await supabase.from('package_signups').insert({
       name: name.trim(),
       email: email.trim().toLowerCase(),
       phone: phone?.trim() || null,
@@ -139,12 +135,43 @@ Deno.serve(async (req) => {
       ip_hash: ipHash,
     })
 
-    if (error) {
-      console.error('Database error:', error)
+    if (dbError) {
+      console.error('Database error:', dbError)
       return new Response(
         JSON.stringify({ error: 'Er ging iets mis bij het opslaan' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
+    }
+
+    // Send email notification to JAS Rijschool
+    const resendApiKey = Deno.env.get('RESEND_API_KEY')
+    if (resendApiKey) {
+      const resend = new Resend(resendApiKey)
+      
+      try {
+        await resend.emails.send({
+          from: 'JAS Rijschool <onboarding@resend.dev>',
+          to: ['info@jas-rijschool.nl'],
+          subject: `Nieuwe aanmelding: ${package_name || 'Algemeen contact'}`,
+          html: `
+            <h2>Nieuwe aanmelding via de website</h2>
+            <p><strong>Pakket:</strong> ${package_name || 'Algemeen contact'}</p>
+            <p><strong>Naam:</strong> ${name.trim()}</p>
+            <p><strong>E-mail:</strong> ${email.trim()}</p>
+            <p><strong>Telefoon:</strong> ${phone?.trim() || 'Niet opgegeven'}</p>
+            <p><strong>Bericht:</strong></p>
+            <p>${message.trim().replace(/\n/g, '<br>')}</p>
+            <hr>
+            <p><small>Dit bericht is verzonden via het contactformulier op jas-rijschool.nl</small></p>
+          `,
+        })
+        console.log('Email sent successfully')
+      } catch (emailError) {
+        console.error('Email error:', emailError)
+        // Don't fail the request if email fails - data is already saved
+      }
+    } else {
+      console.warn('RESEND_API_KEY not configured - email not sent')
     }
 
     return new Response(
