@@ -74,10 +74,11 @@ export const packages = [
 // Extra diensten die apart geboekt kunnen worden
 // ─────────────────────────────────────────────────────────────────────
 export const extraOptions = [
-  { name: 'Rijles 90 min', price: '€95,-' },
-  { name: 'Los rijexamen CBR', price: '€235,-' },
-  { name: 'TTT toets', price: '€235,-' },
-  { name: 'Faalangst examen', price: '€335,-' },
+  { name: 'Rijles 50 min', price: '€58,-' },
+  { name: 'Los rijexamen CBR', price: '€295,-' },
+  { name: 'TTT toets', price: '€265,-' },
+  { name: 'Faalangst examen', price: '€380,-' },
+  { name: 'BNOR examen', price: '€355,-' },
 ];
 
 // ─────────────────────────────────────────────────────────────────────
@@ -85,7 +86,7 @@ export const extraOptions = [
 // Voor leerlingen die extra lessen nodig hebben na hun eerste pakket
 // ─────────────────────────────────────────────────────────────────────
 export const followUpPackages = [
-  { name: 'Pakket 1 - 5 lessen', price: '€345,-' },
-  { name: 'Pakket 2 - 10 lessen', price: '€650,-' },
-  { name: 'Pakket 3 - 15 lessen', price: '€900,-' },
+  { name: 'Pakket 1 - 6 lessen', price: '€345,-' },
+  { name: 'Pakket 2 - 10 lessen', price: '€570,-' },
+  { name: 'Pakket 3 - 16 lessen', price: '€900,-' },
 ];
