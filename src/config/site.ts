@@ -19,7 +19,7 @@ export const siteConfig = {
   phone: '06 44792093',           // Weergave op website
   phoneLink: '+31644792093',      // Klikbare link (met landcode)
   whatsapp: '31644792093',        // WhatsApp nummer (zonder +)
-  email: 'jasrijschool@gmail.com',
+  email: 'info@jas-rijschoolgmail.com',
 
   // ─────────────────────────────────────────────────────────────────────
   // ADRESGEGEVENS
