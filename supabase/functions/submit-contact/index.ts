@@ -149,9 +149,10 @@ Deno.serve(async (req) => {
       const resend = new Resend(resendApiKey)
       
       try {
+        // Email to JAS Rijschool
         await resend.emails.send({
           from: 'JAS Rijschool <onboarding@resend.dev>',
-          to: ['info@jas-rijschool.nl'],
+          to: ['jasrijschool@gmail.com'],
           subject: `Nieuwe aanmelding: ${package_name || 'Algemeen contact'}`,
           html: `
             <h2>Nieuwe aanmelding via de website</h2>
@@ -165,7 +166,47 @@ Deno.serve(async (req) => {
             <p><small>Dit bericht is verzonden via het contactformulier op jas-rijschool.nl</small></p>
           `,
         })
-        console.log('Email sent successfully')
+        console.log('Email to JAS Rijschool sent successfully')
+
+        // Confirmation email to the user
+        await resend.emails.send({
+          from: 'JAS Rijschool <onboarding@resend.dev>',
+          to: [email.trim().toLowerCase()],
+          subject: 'Bedankt voor je aanmelding bij JAS Rijschool!',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h1 style="color: #1e40af;">Bedankt voor je aanmelding, ${name.trim()}!</h1>
+              
+              <p>We hebben je aanmelding ontvangen en nemen zo snel mogelijk contact met je op.</p>
+              
+              <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h2 style="color: #1e40af; margin-top: 0;">Jouw gegevens:</h2>
+                <p><strong>Gekozen pakket/optie:</strong> ${package_name || 'Algemeen contact'}</p>
+                <p><strong>Naam:</strong> ${name.trim()}</p>
+                <p><strong>E-mail:</strong> ${email.trim()}</p>
+                ${phone ? `<p><strong>Telefoon:</strong> ${phone.trim()}</p>` : ''}
+                ${message ? `<p><strong>Jouw bericht:</strong><br>${message.trim().replace(/\n/g, '<br>')}</p>` : ''}
+              </div>
+              
+              <p>Heb je vragen? Je kunt ons bereiken via:</p>
+              <ul>
+                <li>📞 Telefoon: <a href="tel:+31644793093">06 44793093</a></li>
+                <li>📧 E-mail: <a href="mailto:jasrijschool@gmail.com">jasrijschool@gmail.com</a></li>
+                <li>💬 WhatsApp: <a href="https://wa.me/31644793093">Stuur een bericht</a></li>
+              </ul>
+              
+              <p>We kijken ernaar uit om je te helpen je rijbewijs te halen!</p>
+              
+              <p>Met vriendelijke groet,<br><strong>Alex - JAS Rijschool</strong></p>
+              
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+              <p style="color: #6b7280; font-size: 12px;">
+                Dit is een automatisch bericht. Je ontvangt deze e-mail omdat je je hebt aangemeld via jas-rijschool.nl
+              </p>
+            </div>
+          `,
+        })
+        console.log('Confirmation email to user sent successfully')
       } catch (emailError) {
         console.error('Email error:', emailError)
         // Don't fail the request if email fails - data is already saved
