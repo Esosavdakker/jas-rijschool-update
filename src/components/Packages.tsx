@@ -152,7 +152,7 @@ const Packages = () => {
                   <div className="space-y-3">
                     {followUpPackages.map((pkg, i) => (
                       <div key={i} className="flex items-center justify-between bg-white rounded-lg p-4 shadow-sm">
-                        <span className="font-bold text-primary">{pkg.name}</span>
+                        <span className="text-primary"><span className="font-bold">{pkg.name.split(' - ')[0]}</span> - {pkg.name.split(' - ')[1]}</span>
                         <div className="flex items-center gap-3">
                           <span className="font-bold text-secondary">{pkg.price}</span>
                           <Button size="sm" onClick={() => scrollToContact(`Ik wil graag: ${pkg.name}`)}>Kiezen</Button>
