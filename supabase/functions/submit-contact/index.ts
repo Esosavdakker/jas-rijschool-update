@@ -1,5 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-import { Resend } from 'https://esm.sh/resend@2.0.0'
+import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -48,6 +48,21 @@ async function hashIP(ip: string): Promise<string> {
   const hashBuffer = await crypto.subtle.digest('SHA-256', data)
   const hashArray = Array.from(new Uint8Array(hashBuffer))
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').substring(0, 16)
+}
+
+// Create Gmail SMTP client
+function createSMTPClient() {
+  return new SMTPClient({
+    connection: {
+      hostname: 'smtp.gmail.com',
+      port: 465,
+      tls: true,
+      auth: {
+        username: 'jasrijschool@gmail.com',
+        password: Deno.env.get('GMAIL_APP_PASSWORD') || '',
+      },
+    },
+  })
 }
 
 Deno.serve(async (req) => {
@@ -143,16 +158,16 @@ Deno.serve(async (req) => {
       )
     }
 
-    // Send email notification to JAS Rijschool
-    const resendApiKey = Deno.env.get('RESEND_API_KEY')
-    if (resendApiKey) {
-      const resend = new Resend(resendApiKey)
+    // Send email via Gmail SMTP
+    const gmailAppPassword = Deno.env.get('GMAIL_APP_PASSWORD')
+    if (gmailAppPassword) {
+      const client = createSMTPClient()
       
       try {
         // Email to JAS Rijschool
-        await resend.emails.send({
-          from: 'JAS Rijschool <onboarding@resend.dev>',
-          to: ['jasrijschool@gmail.com'],
+        await client.send({
+          from: 'JAS Rijschool <jasrijschool@gmail.com>',
+          to: 'jasrijschool@gmail.com',
           subject: `Nieuwe aanmelding: ${package_name || 'Algemeen contact'}`,
           html: `
             <h2>Nieuwe aanmelding via de website</h2>
@@ -169,9 +184,9 @@ Deno.serve(async (req) => {
         console.log('Email to JAS Rijschool sent successfully')
 
         // Confirmation email to the user
-        await resend.emails.send({
-          from: 'JAS Rijschool <onboarding@resend.dev>',
-          to: [email.trim().toLowerCase()],
+        await client.send({
+          from: 'JAS Rijschool <jasrijschool@gmail.com>',
+          to: email.trim().toLowerCase(),
           subject: 'Bedankt voor je aanmelding bij JAS Rijschool!',
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -207,12 +222,14 @@ Deno.serve(async (req) => {
           `,
         })
         console.log('Confirmation email to user sent successfully')
+
+        await client.close()
       } catch (emailError) {
         console.error('Email error:', emailError)
         // Don't fail the request if email fails - data is already saved
       }
     } else {
-      console.warn('RESEND_API_KEY not configured - email not sent')
+      console.warn('GMAIL_APP_PASSWORD not configured - email not sent')
     }
 
     return new Response(
