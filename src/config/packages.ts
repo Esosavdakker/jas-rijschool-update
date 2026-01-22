@@ -74,6 +74,7 @@ export const packages = [
 // Extra diensten die apart geboekt kunnen worden
 // ─────────────────────────────────────────────────────────────────────
 export const extraOptions = [
+  { name: 'Rijles 100 min', price: '€95,-' },
   { name: 'Rijles 50 min', price: '€58,-' },
   { name: 'Los rijexamen CBR', price: '€295,-' },
   { name: 'TTT toets', price: '€265,-' },
