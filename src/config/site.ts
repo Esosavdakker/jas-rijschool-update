@@ -16,9 +16,9 @@ export const siteConfig = {
   // CONTACTGEGEVENS
   // Let op: whatsapp nummer is ZONDER + teken
   // ─────────────────────────────────────────────────────────────────────
-  phone: '06 44792093',           // Weergave op website
-  phoneLink: '+31644792093',      // Klikbare link (met landcode)
-  whatsapp: '31644792093',        // WhatsApp nummer (zonder +)
+  phone: '06 44793093',           // Weergave op website
+  phoneLink: '+31644793093',      // Klikbare link (met landcode)
+  whatsapp: '31644793093',        // WhatsApp nummer (zonder +)
   email: 'jasrijschool@gmail.com',
 
   // ─────────────────────────────────────────────────────────────────────
