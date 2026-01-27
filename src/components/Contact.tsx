@@ -64,7 +64,7 @@ const Contact = () => {
         </div>
 
         {/* FAQ */}
-        <motion.div id="faq" className="max-w-3xl mx-auto mt-16 pt-12 border-t border-border/30" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <motion.div id="faq" className="max-w-3xl mx-auto mt-24 pt-16 border-t border-border/30" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary text-center mb-8">Veelgestelde Vragen</h3>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
