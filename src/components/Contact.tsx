@@ -1,24 +1,8 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Phone, MessageCircle, Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import { toast } from 'sonner';
+import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { faqs } from '@/config/content';
-import { Checkbox } from '@/components/ui/checkbox';
-import { z } from 'zod';
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-
-// GDPR-compliant input validation schema
-const contactSchema = z.object({
-  name: z.string().trim().min(1, 'Naam is verplicht').max(100, 'Naam mag maximaal 100 tekens zijn'),
-  email: z.string().trim().email('Voer een geldig e-mailadres in').max(255, 'E-mail mag maximaal 255 tekens zijn'),
-  phone: z.string().trim().max(20, 'Telefoonnummer mag maximaal 20 tekens zijn').optional().or(z.literal('')),
-  message: z.string().trim().min(1, 'Bericht is verplicht').max(2000, 'Bericht mag maximaal 2000 tekens zijn'),
-  gdprConsent: z.literal(true, { errorMap: () => ({ message: 'Je moet akkoord gaan met de privacyverklaring' }) }),
-});
 
 const contactMethods = [
   {
@@ -48,76 +32,6 @@ const contactMethods = [
 ];
 
 const Contact = () => {
-  const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
-  const [honeypot, setHoneypot] = useState(''); // Bot trap - hidden field
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Honeypot check - if filled, it's a bot
-    if (honeypot) {
-      // Silently pretend success to not alert the bot
-      toast.success('Bericht verzonden! We nemen snel contact op.', { icon: <CheckCircle className="w-5 h-5" /> });
-      setFormState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
-      return;
-    }
-    
-    // Validate with zod schema
-    const validation = contactSchema.safeParse(formState);
-    if (!validation.success) {
-      const firstError = validation.error.errors[0];
-      toast.error(firstError.message, { icon: <AlertCircle className="w-5 h-5" /> });
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    try {
-      const packageMatch = formState.message.match(/Pakket [A-D]|Pakket \d|rijles|examen|TTT|Faalangst/i);
-      const packageName = packageMatch ? packageMatch[0] : 'Algemeen contact';
-
-      const response = await fetch(`${SUPABASE_URL}/functions/v1/submit-contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: validation.data.name,
-          email: validation.data.email,
-          phone: validation.data.phone || null,
-          package_name: packageName,
-          message: validation.data.message,
-          gdpr_consent: true,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        if (response.status === 429) {
-          toast.error(result.error || 'Te veel verzoeken. Probeer het later opnieuw.', { icon: <AlertCircle className="w-5 h-5" /> });
-        } else {
-          throw new Error(result.error || 'Er ging iets mis');
-        }
-        return;
-      }
-      
-      toast.success('Bericht verzonden! We nemen snel contact op.', { icon: <CheckCircle className="w-5 h-5" /> });
-      setFormState({ name: '', email: '', phone: '', message: '', gdprConsent: false });
-    } catch (error) {
-      // Only log in development to prevent info leakage
-      if (import.meta.env.DEV) {
-        console.error('Error saving signup:', error);
-      }
-      toast.error('Er ging iets mis. Probeer het opnieuw.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const inputClass = "w-full px-5 py-4 rounded-xl border-2 border-accent/30 bg-card text-primary font-medium placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:shadow-glow-orange transition-all duration-300";
-
   return (
     <section id="contact" className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4 md:px-6">
@@ -149,65 +63,8 @@ const Contact = () => {
           ))}
         </div>
 
-        {/* Form */}
-        <motion.div id="contact-form" className="max-w-2xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary text-center mb-8">Stuur ons een bericht</h3>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Honeypot field - hidden from users, visible to bots */}
-            <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
-              <label htmlFor="website">Website (laat leeg)</label>
-              <input
-                type="text"
-                id="website"
-                name="website"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                tabIndex={-1}
-                autoComplete="off"
-              />
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <input type="text" placeholder="Naam" value={formState.name} maxLength={100} onChange={(e) => setFormState({ ...formState, name: e.target.value })} className={inputClass} />
-              <input type="email" placeholder="E-mail" value={formState.email} maxLength={255} onChange={(e) => setFormState({ ...formState, email: e.target.value })} className={inputClass} />
-            </div>
-            <input type="tel" placeholder="Telefoonnummer (optioneel)" value={formState.phone} maxLength={20} onChange={(e) => setFormState({ ...formState, phone: e.target.value })} className={inputClass} />
-            
-            <textarea id="message" placeholder="Bericht (max. 2000 tekens)" rows={5} value={formState.message} maxLength={2000} onChange={(e) => setFormState({ ...formState, message: e.target.value })} className={`${inputClass} resize-none`} />
-            
-            {/* GDPR Consent Checkbox */}
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-xl border border-border/50">
-              <Checkbox 
-                id="gdpr-consent" 
-                checked={formState.gdprConsent}
-                onCheckedChange={(checked) => setFormState({ ...formState, gdprConsent: checked === true })}
-                className="mt-1"
-              />
-              <label htmlFor="gdpr-consent" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                Ik ga akkoord met de verwerking van mijn gegevens conform de{' '}
-                <a href="/privacy" className="text-accent hover:underline font-medium">privacyverklaring</a>. 
-                Je gegevens worden maximaal 2 jaar bewaard en worden niet gedeeld met derden.
-              </label>
-            </div>
-
-            <div className="text-center">
-              <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="min-w-[200px]">
-                {isSubmitting ? (
-                  <span className="flex items-center gap-2">
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Versturen...
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-2">Versturen <Send className="w-5 h-5" /></span>
-                )}
-              </Button>
-            </div>
-          </form>
-        </motion.div>
-
         {/* FAQ */}
-        <motion.div id="faq" className="max-w-3xl mx-auto mt-20" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <motion.div id="faq" className="max-w-3xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary text-center mb-8">Veelgestelde Vragen</h3>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
