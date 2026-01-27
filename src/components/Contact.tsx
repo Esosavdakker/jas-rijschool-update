@@ -42,21 +42,21 @@ const Contact = () => {
         </motion.div>
 
         {/* Contact Cards */}
-        <div className="flex justify-center items-center gap-4 md:gap-6 mb-14">
+        <div className="flex justify-center gap-3 md:gap-4 max-w-3xl mx-auto mb-14 overflow-x-auto px-2">
           {contactMethods.map((method, index) => (
             <motion.a
               key={method.title}
               href={method.href}
               target={method.href.startsWith('http') ? '_blank' : undefined}
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={`group bg-card rounded-xl p-4 md:p-6 shadow-md border-2 border-border/50 hover:border-transparent transition-all duration-300 hover:-translate-y-1 ${method.hoverEffect} text-center`}
+              className={`group bg-card rounded-xl p-3 md:p-5 shadow-md border-2 border-border/50 hover:border-transparent transition-all duration-300 hover:-translate-y-1 ${method.hoverEffect} text-center block w-28 md:w-36 flex-shrink-0`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                <method.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center mx-auto mb-2 md:mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <method.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
               <h3 className="font-heading font-semibold text-sm md:text-base text-primary">{method.title}</h3>
             </motion.a>
