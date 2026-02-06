@@ -166,7 +166,7 @@ const Packages = () => {
           )}
         </AnimatePresence>
 
-        <p className="text-center text-muted-foreground mt-8 italic">*Lesduur: 100 minuten per les</p>
+        <p className="text-center text-muted-foreground mt-8 italic">*Lesduur: 50 minuten per les</p>
       </div>
     </section>
   );

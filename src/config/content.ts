@@ -143,7 +143,7 @@ export const faqs = [
   },
   {
     question: 'Hoe lang duurt een les?',
-    answer: '100 minuten voor een standaard les, of 50 minuten voor een kortere les. We halen je thuis op en brengen je weer terug. Makkelijk toch?',
+    answer: '50 minuten per les. We halen je thuis op en brengen je weer terug. Makkelijk toch?',
   },
   {
     question: 'Kan ik in mijn eigen auto lessen?',
