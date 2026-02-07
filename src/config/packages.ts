@@ -75,6 +75,7 @@ export const packages = [
 // ─────────────────────────────────────────────────────────────────────
 export const extraOptions = [
   { name: 'Rijles 50 min', price: '€58,-' },
+  { name: '2x Rijles 50 min', price: '€116,-' },
   { name: 'Los rijexamen CBR', price: '€295,-' },
   { name: 'TTT toets', price: '€265,-' },
   { name: 'Faalangst examen', price: '€380,-' },
