@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { navItems } from '@/config/content';
+import logo from '@/assets/logo.ico';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,9 +33,10 @@ const Header = () => {
           <motion.a
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
-            className="flex items-center gap-1 font-heading text-2xl md:text-3xl font-extrabold"
+            className="flex items-center gap-2 font-heading text-2xl md:text-3xl font-extrabold"
             whileHover={{ scale: 1.02 }}
           >
+            <img src={logo} alt="JAS-Rijschool logo" className="h-10 w-10 md:h-12 md:w-12" />
             <span className="text-primary">JAS</span>
             <span className="text-accent">-</span>
             <span className="text-secondary">Rijschool</span>
